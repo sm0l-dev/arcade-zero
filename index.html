@@ -133,7 +133,8 @@
         originalPrice: 300,
         inflationAdjustedPrice: 996,
         globalSales: 3000000,
-        imageUrl: "https://en.wikipedia.org/wiki/File:Intellivision.jpg",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Intellivision-Console-Set.png/800px-Intellivision-Console-Set.png",
       },
       {
         generation: 2,
@@ -142,7 +143,8 @@
         originalPrice: 270,
         inflationAdjustedPrice: 740,
         globalSales: 1400000,
-        imageUrl: "https://commons.wikimedia.org/wiki/File:Atari_5200.png",
+        imageUrl:
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Atari-5200-4-Port-wController-L.png",
       },
       {
         generation: 2,
@@ -151,45 +153,54 @@
         originalPrice: 175,
         inflationAdjustedPrice: 480,
         globalSales: 2000000,
-        imageUrl: "",
+        imageUrl:
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/ColecoVision-wController-L.png",
       },
 
       // Third generation
       {
+        name: "Famicom",
+        releaseYear: 1983,
+        originalPrice: 100,
+        inflationAdjustedPrice: 273,
+        globalSales: 1000000,
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Nintendo-Famicom-Console-Set-FL.png/800px-Nintendo-Famicom-Console-Set-FL.png",
+      },
+      {
         generation: 3,
         name: "NES",
         releaseYear: 1985,
-        originalPrice: 200,
-        inflationAdjustedPrice: 490,
-        globalSales: 61900000,
-        imageUrl: "",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/NES-Console-Set.png/800px-NES-Console-Set.png",
       },
       {
         generation: 3,
         name: "Atari 7800",
         releaseYear: 1986,
-        originalPrice: 150,
-        inflationAdjustedPrice: 380,
-        globalSales: 3770000,
-        imageUrl: "",
+        imageUrl:
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Atari-7800-wControl-Pad-L.png",
+      },
+      {
+        generation: 3,
+        name: "SG-1000",
+        releaseYear: 1983,
+        imageUrl:
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/960px-Sega-SG-1000-Console-Set.png",
       },
       {
         generation: 3,
         name: "Master System",
         releaseYear: 1986,
-        originalPrice: 200,
-        inflationAdjustedPrice: 470,
-        globalSales: 13000000,
-        imageUrl: "",
+        imageUrl:
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Sega-Master-System-Set.png",
       },
       {
         generation: 3,
         name: "Game Boy",
         releaseYear: 1989,
-        originalPrice: 110,
-        inflationAdjustedPrice: 234,
-        globalSales: 118690000,
-        imageUrl: "",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Game-Boy-FL.png/494px-Game-Boy-FL.png",
       },
 
       // Fourth generation
@@ -197,55 +208,43 @@
         generation: 4,
         name: "TurboGrafx-16",
         releaseYear: 1989,
-        originalPrice: 200,
-        inflationAdjustedPrice: 426,
-        globalSales: 5800000,
-        imageUrl: "",
+        imageUrl:
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/800px-TurboGrafx16-Console-Set.png",
       },
       {
         generation: 4,
         name: "Genesis",
         releaseYear: 1989,
-        originalPrice: 190,
-        inflationAdjustedPrice: 405,
-        globalSales: 30750000,
-        imageUrl: "",
+        imageUrl:
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Sega-Mega-Drive-JP-Mk1-Console-Set.png",
       },
       {
         generation: 4,
         name: "SNES",
         releaseYear: 1991,
-        originalPrice: 200,
-        inflationAdjustedPrice: 384,
-        globalSales: 49100000,
-        imageUrl: "",
+        imageUrl:
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Wikipedia_SNES_PAL.png",
       },
       {
         generation: 4,
         name: "CD-I",
         releaseYear: 1991,
-        originalPrice: 400,
-        inflationAdjustedPrice: 768,
-        globalSales: 1000000,
-        imageUrl: "",
+        imageUrl:
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/CD-i-910-Console-Set.png",
       },
       {
         generation: 4,
         name: "Neo Geo",
         releaseYear: 1991,
-        originalPrice: 650,
-        inflationAdjustedPrice: 1248,
-        globalSales: 980000,
-        imageUrl: "",
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Neo-Geo-AES-Console-Set.png/960px-Neo-Geo-AES-Console-Set.png",
       },
       {
         generation: 4,
         name: "Sega CD",
         releaseYear: 1992,
-        originalPrice: 300,
-        inflationAdjustedPrice: 561,
-        globalSales: 2240000,
-        imageUrl: "",
+        imageUrl:
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Sega-CD-Model2-Set.png",
       },
     ];
 
@@ -269,9 +268,9 @@
 
       card.innerHTML = `
         <div class="aspect-[4/3] ">
-          <img 
-            src="${consoleUrl}" 
-            alt="${gameConsole.name}" 
+          <img
+            src="${consoleUrl}"
+            alt="${gameConsole.name}"
             class="w-full h-full object-contain"
             onerror="this.src='${getPlaceholderImage(gameConsole.name)}'"
           >
