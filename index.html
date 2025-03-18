@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Experience the fusion of retro gaming and steampunk aesthetics in our unique arcade collection"
+    />
+    <title>Retro Gaming Steampunk Hero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Slab:wght@400;700&display=swap");
+      body {
+        font-family: "Roboto Slab", serif;
+      }
+    </style>
+  </head>
+  <body class="bg-[#EAD196] text-[#7D0A0A]">
+    <div class="min-h-screen flex items-center justify-center p-4 sm:p-6">
+      <div
+        class="max-w-4xl w-full bg-[#EEEEEE] rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2 border-4 sm:border-8 border-[#BF3131]"
+      >
+        <div class="p-4 sm:p-8 flex flex-col justify-center">
+          <h1
+            class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-[#7D0A0A] font-['Press_Start_2P'] leading-relaxed"
+          >
+            Retro Arcade
+          </h1>
+          <p class="text-base sm:text-xl mb-4 sm:mb-6 text-[#BF3131]">
+            Step into a world of pixelated nostalgia and steampunk-inspired
+            gaming glory!
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <a
+              href="#"
+              class="bg-[#7D0A0A] text-[#EAD196] px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-[#BF3131] transition duration-300 font-['Press_Start_2P'] text-xs sm:text-sm text-center"
+              aria-label="Browse our collection of retro gaming consoles"
+            >
+              Explore Consoles
+            </a>
+            <a
+              href="#"
+              class="border-2 border-[#7D0A0A] text-[#7D0A0A] px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-[#EAD196] transition duration-300 font-['Press_Start_2P'] text-xs sm:text-sm text-center"
+              aria-label="View our extensive game library"
+            >
+              Game Library
+            </a>
+          </div>
+        </div>
+        <div
+          class="relative bg-[#BF3131] flex items-center justify-center p-4 sm:p-8"
+        >
+          <div
+            class="absolute inset-0 opacity-10 bg-repeat"
+            style="
+              background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PGcgZmlsbD0iIzAwMCIgb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMTEgMThhNyA3IDAgMCAwLTcgN3Y0NmE3IDcgMCAwIDAgNyA3aDc4YTcgNyAwIDAgMCA3LTdWMjVhNyA3IDAgMCAwLTctN0gxMXptMC0yaDc4YTkgOSAwIDAgMSA5IDl2NDZhOSA5IDAgMCAxLTkgOUgxMWE5IDkgMCAwIDEtOS05VjI1YTkgOSAwIDAgMSA5LTl6Ii8+PHBhdGggZD0iTTQzIDMzYTQgNCAwIDEgMCAwIDggNCA0IDAgMCAwIDAtOHptMC0yYTYgNiAwIDEgMSAwIDEyIDYgNiAwIDAgMSAwLTEyeiIvPjwvZz48L3N2Zz4=');
+            "
+          ></div>
+          <div class="relative z-10 transform rotate-12 shadow-2xl max-w-full">
+            <div
+              class="bg-[#EEEEEE] p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 sm:border-4 border-[#7D0A0A]"
+            >
+              <div
+                class="w-48 sm:w-64 h-36 sm:h-48 bg-gray-800 rounded-lg overflow-hidden relative"
+              >
+                <div
+                  class="absolute inset-0 bg-gradient-to-br from-transparent to-black opacity-50"
+                ></div>
+                <div
+                  class="absolute top-3 sm:top-4 left-3 sm:left-4 w-8 sm:w-12 h-8 sm:h-12 bg-[#BF3131] rounded-full"
+                ></div>
+                <div
+                  class="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 w-12 sm:w-16 h-6 sm:h-8 bg-[#7D0A0A] rounded-lg"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consoles Grid Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <h2
+        class="text-xl sm:text-3xl font-['Press_Start_2P'] text-center mb-8 sm:mb-12 text-[#7D0A0A]"
+      >
+        Gaming History
+      </h2>
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
+      >
+        <!-- Console cards will be dynamically inserted here -->
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const consoleData = [
+      // First generation
+      {
+        generation: 1,
+        name: "Magnavox Odyssey",
+        releaseYear: 1972,
+        originalPrice: 100,
+        inflationAdjustedPrice: 553,
+        globalSales: 350000,
+        imageUrl:
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Magnavox-Odyssey-2-Console-Set.png/1024px-Magnavox-Odyssey-2-Console-Set.png",
+        // "https://en.wikipedia.org/wiki/File:Magnavox-Odyssey-2-Console-Set.png",
+      },
+
+      // Second generation
+      {
+        generation: 2,
+        name: "Atari 2600",
+        releaseYear: 1977,
+        originalPrice: 200,
+        inflationAdjustedPrice: 882,
+        globalSales: 30000000,
+        imageUrl:
+          "https://en.wikipedia.org/wiki/File:Atari-2600-Tele-Games-FL.jpg",
+      },
+      {
+        generation: 2,
+        name: "Intellivision",
+        releaseYear: 1979,
+        originalPrice: 300,
+        inflationAdjustedPrice: 996,
+        globalSales: 3000000,
+        imageUrl: "https://en.wikipedia.org/wiki/File:Intellivision.jpg",
+      },
+      {
+        generation: 2,
+        name: "Atari 5200",
+        releaseYear: 1982,
+        originalPrice: 270,
+        inflationAdjustedPrice: 740,
+        globalSales: 1400000,
+        imageUrl: "https://commons.wikimedia.org/wiki/File:Atari_5200.png",
+      },
+      {
+        generation: 2,
+        name: "Colecovision",
+        releaseYear: 1982,
+        originalPrice: 175,
+        inflationAdjustedPrice: 480,
+        globalSales: 2000000,
+        imageUrl: "",
+      },
+
+      // Third generation
+      {
+        generation: 3,
+        name: "NES",
+        releaseYear: 1985,
+        originalPrice: 200,
+        inflationAdjustedPrice: 490,
+        globalSales: 61900000,
+        imageUrl: "",
+      },
+      {
+        generation: 3,
+        name: "Atari 7800",
+        releaseYear: 1986,
+        originalPrice: 150,
+        inflationAdjustedPrice: 380,
+        globalSales: 3770000,
+        imageUrl: "",
+      },
+      {
+        generation: 3,
+        name: "Master System",
+        releaseYear: 1986,
+        originalPrice: 200,
+        inflationAdjustedPrice: 470,
+        globalSales: 13000000,
+        imageUrl: "",
+      },
+      {
+        generation: 3,
+        name: "Game Boy",
+        releaseYear: 1989,
+        originalPrice: 110,
+        inflationAdjustedPrice: 234,
+        globalSales: 118690000,
+        imageUrl: "",
+      },
+
+      // Fourth generation
+      {
+        generation: 4,
+        name: "TurboGrafx-16",
+        releaseYear: 1989,
+        originalPrice: 200,
+        inflationAdjustedPrice: 426,
+        globalSales: 5800000,
+        imageUrl: "",
+      },
+      {
+        generation: 4,
+        name: "Genesis",
+        releaseYear: 1989,
+        originalPrice: 190,
+        inflationAdjustedPrice: 405,
+        globalSales: 30750000,
+        imageUrl: "",
+      },
+      {
+        generation: 4,
+        name: "SNES",
+        releaseYear: 1991,
+        originalPrice: 200,
+        inflationAdjustedPrice: 384,
+        globalSales: 49100000,
+        imageUrl: "",
+      },
+      {
+        generation: 4,
+        name: "CD-I",
+        releaseYear: 1991,
+        originalPrice: 400,
+        inflationAdjustedPrice: 768,
+        globalSales: 1000000,
+        imageUrl: "",
+      },
+      {
+        generation: 4,
+        name: "Neo Geo",
+        releaseYear: 1991,
+        originalPrice: 650,
+        inflationAdjustedPrice: 1248,
+        globalSales: 980000,
+        imageUrl: "",
+      },
+      {
+        generation: 4,
+        name: "Sega CD",
+        releaseYear: 1992,
+        originalPrice: 300,
+        inflationAdjustedPrice: 561,
+        globalSales: 2240000,
+        imageUrl: "",
+      },
+    ];
+
+    // Function to create a placeholder image URL with console name
+    function getPlaceholderImage(name) {
+      return `https://placehold.co/400x300/7D0A0A/EAD196?text=${encodeURIComponent(
+        name
+      )}`;
+    }
+
+    // Function to create a console card
+    function createConsoleCard(gameConsole) {
+      // console.log(gameConsole.imageUrl);
+      const consoleUrl =
+        gameConsole.imageUrl || getPlaceholderImage(gameConsole.name);
+      console.log(consoleUrl);
+      const card = document.createElement("div");
+      card.className =
+        "bg-[#EEEEEE] rounded-lg overflow-hidden shadow-lg border-2 border-[#BF3131] transition-transform hover:scale-105";
+
+      card.innerHTML = `
+        <div class="aspect-[4/3] overflow-hidden bg-[#7D0A0A]">
+          <img 
+            src="${consoleUrl}" 
+            alt="${gameConsole.name}" 
+            class="w-full h-full object-cover"
+            onerror="this.src='${getPlaceholderImage(gameConsole.name)}'"
+          >
+        </div>
+        <div class="p-4">
+          <h3 class="font-['Press_Start_2P'] text-xs sm:text-sm text-[#7D0A0A] mb-1">${
+            gameConsole.name
+          }</h3>
+          <p class="text-[#BF3131] text-xs">${gameConsole.releaseYear}</p>
+        </div>
+      `;
+
+      return card;
+    }
+
+    // Sort consoles by release year
+    const sortedConsoles = consoleData.sort(
+      (a, b) => a.releaseYear - b.releaseYear
+    );
+
+    // Insert console cards into the grid
+    const grid = document.querySelector(".grid");
+    sortedConsoles.forEach((gameConsole) => {
+      grid.appendChild(createConsoleCard(gameConsole));
+    });
+  </script>
+</html>
