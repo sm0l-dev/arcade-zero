@@ -9,6 +9,7 @@
     />
     <title>Retro Gaming Steampunk Hero</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="consoles.js"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Slab:wght@400;700&display=swap");
       body {
@@ -16,7 +17,7 @@
       }
     </style>
   </head>
-  <body class="bg-[#EAD196] text-[#7D0A0A]">
+  <body class="bg-[#EAD196] text-[#7D0A0A] p-10">
     <!-- Hero Section -->
     <section class="min-h-[80vh] flex items-center justify-center p-4 sm:p-6">
       <div
@@ -26,33 +27,26 @@
           <h1
             class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-[#7D0A0A] font-['Press_Start_2P'] leading-relaxed"
           >
-            Retro Arcade
+            Retro Zero
           </h1>
           <p class="text-base sm:text-xl mb-4 sm:mb-6 text-[#BF3131]">
-            Step into a world of pixelated nostalgia and steampunk-inspired
+            Step into a world of pixelated nostalgia and
             gaming glory!
           </p>
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
-              href="#"
+              href="#consoles"
               class="bg-[#7D0A0A] text-[#EAD196] px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-[#BF3131] transition duration-300 font-['Press_Start_2P'] text-xs sm:text-sm text-center"
               aria-label="Browse our collection of retro gaming consoles"
             >
               Explore Consoles
-            </a>
-            <a
-              href="#"
-              class="border-2 border-[#7D0A0A] text-[#7D0A0A] px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-[#EAD196] transition duration-300 font-['Press_Start_2P'] text-xs sm:text-sm text-center"
-              aria-label="View our extensive game library"
-            >
-              Game Library
             </a>
           </div>
         </div>
         <div
           class="relative bg-[#BF3131] flex items-center justify-center p-4 sm:p-8"
         >
-          <div
+          <div id="consoles"
             class="absolute inset-0 opacity-10 bg-repeat"
             style="
               background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PGcgZmlsbD0iIzAwMCIgb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMTEgMThhNyA3IDAgMCAwLTcgN3Y0NmE3IDcgMCAwIDAgNyA3aDc4YTcgNyAwIDAgMCA3LTdWMjVhNyA3IDAgMCAwLTctN0gxMXptMC0yaDc4YTkgOSAwIDAgMSA5IDl2NDZhOSA5IDAgMCAxLTkgOUgxMWE5IDkgMCAwIDEtOS05VjI1YTkgOSAwIDAgMSA5LTl6Ii8+PHBhdGggZD0iTTQzIDMzYTQgNCAwIDEgMCAwIDggNCA0IDAgMCAwIDAtOHptMC0yYTYgNiAwIDEgMSAwIDEyIDYgNiAwIDAgMSAwLTEyeiIvPjwvZz48L3N2Zz4=');
@@ -80,194 +74,101 @@
         </div>
       </div>
     </section>
+    
+    <!-- Console Grid Container -->
     <div
       id="console-container"
       class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-4xl w-full mx-auto"
     ></div>
-
-    <!-- Consoles Grid Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
-      <h2
-        class="text-xl sm:text-3xl font-['Press_Start_2P'] text-center mb-8 sm:mb-12 text-[#7D0A0A]"
-      >
-        Gaming History
-      </h2>
-      <div
-        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
-      >
-        <!-- Console cards will be dynamically inserted here -->
+    
+    <!-- Modal Overlay -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+      <div id="modal-container" class="bg-[#EEEEEE] max-w-2xl w-full mx-4 rounded-xl border-4 border-[#BF3131] shadow-2xl transform transition-all">
+        <div class="flex justify-between items-center p-4 border-b-2 border-[#BF3131]">
+          <h2 id="modal-title" class="font-['Press_Start_2P'] text-lg text-[#7D0A0A]">Console Details</h2>
+          <button id="modal-close" class="text-[#7D0A0A] hover:text-[#BF3131] font-bold text-2xl">&times;</button>
+        </div>
+        <div class="p-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Console Image -->
+            <div class="bg-[#BF3131] bg-opacity-10 rounded-lg p-4 flex items-center justify-center">
+              <img id="modal-image" src="" alt="Console" class="max-h-64 object-contain" />
+            </div>
+            
+            <!-- Console Card (Pokémon style) -->
+            <div class="bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-lg overflow-hidden border-4 border-[#7D0A0A] shadow-lg">
+              <!-- Card Header -->
+              <div class="bg-[#BF3131] py-2 px-4 border-b-4 border-[#7D0A0A]">
+                <h3 id="modal-name" class="font-['Press_Start_2P'] text-[#EAD196] text-center text-lg">Console Name</h3>
+              </div>
+              <!-- Card Image -->
+              <div class="h-48 overflow-hidden relative">
+                <div class="absolute inset-0 bg-white bg-opacity-20 flex items-center justify-center">
+                  <img id="modal-card-image" src="" alt="Console" class="max-h-full max-w-full object-contain" />
+                </div>
+              </div>
+              <!-- Card Stats -->
+              <div class="bg-[#EAD196] p-4">
+                <div class="grid grid-cols-2 gap-2 text-sm">
+                  <div class="font-bold text-[#7D0A0A]">Generation:</div>
+                  <div id="modal-generation">Gen 1</div>
+                  <div class="font-bold text-[#7D0A0A]">Release Year:</div>
+                  <div id="modal-year">1985</div>
+                  <div class="font-bold text-[#7D0A0A]">Original Price:</div>
+                  <div id="modal-price">$199</div>
+                  <div class="font-bold text-[#7D0A0A]">Sales:</div>
+                  <div id="modal-sales">61.91M</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Console Details -->
+          <div class="mt-6">
+            <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-sm mb-2">Specs & History</h4>
+            <div id="modal-description" class="text-[#BF3131] text-sm">
+              Console description goes here.
+            </div>
+            
+            <div class="mt-4 grid grid-cols-2 gap-4">
+              <div>
+                <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-xs mb-2">Notable Games</h4>
+                <ul id="modal-games" class="text-[#BF3131] text-xs list-disc list-inside">
+                  <!-- Games will be inserted here -->
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-xs mb-2">Fun Facts</h4>
+                <ul id="modal-facts" class="text-[#BF3131] text-xs list-disc list-inside">
+                  <!-- Facts will be inserted here -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-[#7D0A0A] py-3 px-4 flex justify-end">
+          <button id="modal-prev" class="bg-[#EAD196] text-[#7D0A0A] px-4 py-2 rounded-full mr-2 font-['Press_Start_2P'] text-xs hover:bg-[#BF3131] hover:text-[#EAD196] transition duration-300">Prev</button>
+          <button id="modal-next" class="bg-[#EAD196] text-[#7D0A0A] px-4 py-2 rounded-full font-['Press_Start_2P'] text-xs hover:bg-[#BF3131] hover:text-[#EAD196] transition duration-300">Next</button>
+        </div>
       </div>
-    </section>
-  </body>
+    </div>
 
   <script>
-    const consoleData = [
-      // First generation
-      {
-        generation: 1,
-        name: "Magnavox Odyssey",
-        releaseYear: 1972,
-        originalPrice: 100,
-        inflationAdjustedPrice: 553,
-        globalSales: 350000,
-        imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Magnavox-Odyssey-2-Console-Set.png/1024px-Magnavox-Odyssey-2-Console-Set.png",
-        // "https://en.wikipedia.org/wiki/File:Magnavox-Odyssey-2-Console-Set.png",
-      },
-
-      // Second generation
-      {
-        generation: 2,
-        name: "Atari 2600",
-        releaseYear: 1977,
-        originalPrice: 200,
-        inflationAdjustedPrice: 882,
-        globalSales: 30000000,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Atari-2600-Tele-Games-FL.png",
-      },
-      {
-        generation: 2,
-        name: "Intellivision",
-        releaseYear: 1979,
-        originalPrice: 300,
-        inflationAdjustedPrice: 996,
-        globalSales: 3000000,
-        imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Intellivision-Console-Set.png/800px-Intellivision-Console-Set.png",
-      },
-      {
-        generation: 2,
-        name: "Atari 5200",
-        releaseYear: 1982,
-        originalPrice: 270,
-        inflationAdjustedPrice: 740,
-        globalSales: 1400000,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Atari-5200-4-Port-wController-L.png",
-      },
-      {
-        generation: 2,
-        name: "Colecovision",
-        releaseYear: 1982,
-        originalPrice: 175,
-        inflationAdjustedPrice: 480,
-        globalSales: 2000000,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/ColecoVision-wController-L.png",
-      },
-
-      // Third generation
-      {
-        name: "Famicom",
-        releaseYear: 1983,
-        originalPrice: 100,
-        inflationAdjustedPrice: 273,
-        globalSales: 1000000,
-        imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Nintendo-Famicom-Console-Set-FL.png/800px-Nintendo-Famicom-Console-Set-FL.png",
-      },
-      {
-        generation: 3,
-        name: "NES",
-        releaseYear: 1985,
-        imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/NES-Console-Set.png/800px-NES-Console-Set.png",
-      },
-      {
-        generation: 3,
-        name: "Atari 7800",
-        releaseYear: 1986,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Atari-7800-wControl-Pad-L.png",
-      },
-      {
-        generation: 3,
-        name: "SG-1000",
-        releaseYear: 1983,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/960px-Sega-SG-1000-Console-Set.png",
-      },
-      {
-        generation: 3,
-        name: "Master System",
-        releaseYear: 1986,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Sega-Master-System-Set.png",
-      },
-      {
-        generation: 3,
-        name: "Game Boy",
-        releaseYear: 1989,
-        imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Game-Boy-FL.png/494px-Game-Boy-FL.png",
-      },
-
-      // Fourth generation
-      {
-        generation: 4,
-        name: "TurboGrafx-16",
-        releaseYear: 1989,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/800px-TurboGrafx16-Console-Set.png",
-      },
-      {
-        generation: 4,
-        name: "Genesis",
-        releaseYear: 1989,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Sega-Mega-Drive-JP-Mk1-Console-Set.png",
-      },
-      {
-        generation: 4,
-        name: "SNES",
-        releaseYear: 1991,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Wikipedia_SNES_PAL.png",
-      },
-      {
-        generation: 4,
-        name: "CD-I",
-        releaseYear: 1991,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/CD-i-910-Console-Set.png",
-      },
-      {
-        generation: 4,
-        name: "Neo Geo",
-        releaseYear: 1991,
-        imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Neo-Geo-AES-Console-Set.png/960px-Neo-Geo-AES-Console-Set.png",
-      },
-      {
-        generation: 4,
-        name: "Sega CD",
-        releaseYear: 1992,
-        imageUrl:
-          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Sega-CD-Model2-Set.png",
-      },
-    ];
-
-    // Function to create a placeholder image URL with console name
+  
     function getPlaceholderImage(name) {
-      return `https://placehold.co/400x300/7D0A0A/EAD196?text=${encodeURIComponent(
-        name
-      )}`;
+      return `https://placehold.co/400x300/7D0A0A/EAD196?text=${encodeURIComponent(name)}`;
     }
 
-    // Function to create a console card
-    function createConsoleCard(gameConsole) {
-      // console.log(gameConsole.imageUrl);
-      const consoleUrl =
-        gameConsole.imageUrl || getPlaceholderImage(gameConsole.name);
-      console.log(consoleUrl);
+    // Function to create a console card with click handler for modal
+    function createConsoleCard(gameConsole, index) {
+      const consoleUrl = gameConsole.imageUrl || getPlaceholderImage(gameConsole.name);
+      
       const card = document.createElement("div");
-      card.className = "";
-
-      // ("bg-[#EEEEEE] rounded-lg overflow-hidden shadow-lg border-2 border-[#BF3131] transition-transform hover:scale-105");
-
+      card.className = "bg-[#EEEEEE] rounded-lg overflow-hidden shadow-lg border-2 border-[#BF3131] transition-transform hover:scale-105 cursor-pointer";
+      card.setAttribute("data-index", index);
+      
       card.innerHTML = `
-        <div class="aspect-[4/3] ">
+        <div class="aspect-[4/3] bg-[#7D0A0A] bg-opacity-10 p-2">
           <img
             src="${consoleUrl}"
             alt="${gameConsole.name}"
@@ -276,25 +177,147 @@
           >
         </div>
         <div class="p-4">
-          <h3 class="font-['Press_Start_2P'] text-xs sm:text-sm text-[#7D0A0A] mb-1">${
-            gameConsole.name
-          }</h3>
+          <h3 class="font-['Press_Start_2P'] text-xs sm:text-sm text-[#7D0A0A] mb-1">${gameConsole.name}</h3>
           <p class="text-[#BF3131] text-xs">${gameConsole.releaseYear}</p>
+          <p class="text-[#BF3131] text-xs mt-1">Gen ${gameConsole.generation || '?'}</p>
         </div>
       `;
-
+      
+      // Add click event to open modal
+      card.addEventListener("click", () => openModal(index));
+      
       return card;
     }
 
     // Sort consoles by release year
-    const sortedConsoles = consoleData.sort(
-      (a, b) => a.releaseYear - b.releaseYear
-    );
+    const sortedConsoles = consoleData.sort((a, b) => a.releaseYear - b.releaseYear);
 
     // Insert console cards into the grid
-    const grid = document.querySelector("#console-container");
-    sortedConsoles.forEach((gameConsole) => {
-      grid.appendChild(createConsoleCard(gameConsole));
+    const grid = document.getElementById("console-container");
+    sortedConsoles.forEach((gameConsole, index) => {
+      grid.appendChild(createConsoleCard(gameConsole, index));
+    });
+
+    // Modal functionality
+    let currentConsoleIndex = 0;
+    const modalOverlay = document.getElementById("modal-overlay");
+    const modalClose = document.getElementById("modal-close");
+    const modalPrev = document.getElementById("modal-prev");
+    const modalNext = document.getElementById("modal-next");
+
+    // Function to open modal with console details
+    function openModal(index) {
+      currentConsoleIndex = index;
+      updateModalContent(index);
+      modalOverlay.classList.remove("hidden");
+      document.body.style.overflow = "hidden"; // Prevent scrolling
+    }
+
+    // Function to close modal
+    function closeModal() {
+      modalOverlay.classList.add("hidden");
+      document.body.style.overflow = "auto"; // Re-enable scrolling
+    }
+
+    // Function to update modal content
+    function updateModalContent(index) {
+      const console = sortedConsoles[index];
+      
+      // Update modal title and images
+      document.getElementById("modal-title").textContent = console.name;
+      document.getElementById("modal-image").src = console.imageUrl || getPlaceholderImage(console.name);
+      document.getElementById("modal-image").alt = console.name;
+      document.getElementById("modal-card-image").src = console.imageUrl || getPlaceholderImage(console.name);
+      document.getElementById("modal-card-image").alt = console.name;
+      
+      // Update card details
+      document.getElementById("modal-name").textContent = console.name;
+      document.getElementById("modal-generation").textContent = console.generation ? `Gen ${console.generation}` : "Unknown";
+      document.getElementById("modal-year").textContent = console.releaseYear;
+      
+      // Format price with dollar sign if available
+      const price = console.originalPrice ? `${console.originalPrice}` : "Unknown";
+      document.getElementById("modal-price").textContent = price;
+      
+      // Format sales with abbreviation if available
+      let salesText = "Unknown";
+      if (console.globalSales) {
+        if (console.globalSales >= 1000000) {
+          salesText = (console.globalSales / 1000000).toFixed(2) + "M";
+        } else if (console.globalSales >= 1000) {
+          salesText = (console.globalSales / 1000).toFixed(2) + "K";
+        } else {
+          salesText = console.globalSales.toString();
+        }
+      }
+      document.getElementById("modal-sales").textContent = salesText;
+      
+      // Update description
+      document.getElementById("modal-description").textContent = console.description || "No description available.";
+      
+      // Update games list
+      const gamesList = document.getElementById("modal-games");
+      gamesList.innerHTML = "";
+      if (console.notableGames && console.notableGames.length > 0) {
+        console.notableGames.forEach(game => {
+          const li = document.createElement("li");
+          li.textContent = game;
+          gamesList.appendChild(li);
+        });
+      } else {
+        const li = document.createElement("li");
+        li.textContent = "Information not available";
+        gamesList.appendChild(li);
+      }
+      
+      // Update facts list
+      const factsList = document.getElementById("modal-facts");
+      factsList.innerHTML = "";
+      if (console.funFacts && console.funFacts.length > 0) {
+        console.funFacts.forEach(fact => {
+          const li = document.createElement("li");
+          li.textContent = fact;
+          factsList.appendChild(li);
+        });
+      } else {
+        const li = document.createElement("li");
+        li.textContent = "Information not available";
+        factsList.appendChild(li);
+      }
+    }
+
+    // Navigate to previous console
+    function prevConsole() {
+      currentConsoleIndex = (currentConsoleIndex - 1 + sortedConsoles.length) % sortedConsoles.length;
+      updateModalContent(currentConsoleIndex);
+    }
+
+    // Navigate to next console
+    function nextConsole() {
+      currentConsoleIndex = (currentConsoleIndex + 1) % sortedConsoles.length;
+      updateModalContent(currentConsoleIndex);
+    }
+
+    // Event listeners for modal buttons
+    modalClose.addEventListener("click", closeModal);
+    modalPrev.addEventListener("click", prevConsole);
+    modalNext.addEventListener("click", nextConsole);
+
+    // Close modal when clicking outside
+    modalOverlay.addEventListener("click", (e) => {
+      if (e.target === modalOverlay) {
+        closeModal();
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+      if (modalOverlay.classList.contains("hidden")) return;
+      
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowLeft") prevConsole();
+      if (e.key === "ArrowRight") nextConsole();
     });
   </script>
+  </body>
 </html>
