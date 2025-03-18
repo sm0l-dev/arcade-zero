@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,24 +16,215 @@
         font-family: "Space Mono", serif;
         font-weight: bold;
       }
+
+      /* Theme toggle animation */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 100;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.1);
+      }
+
+      .theme-toggle svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      /* Theme Variables */
+      :root {
+        --bg-primary: #ead196;
+        --text-primary: #7d0a0a;
+        --text-secondary: #bf3131;
+        --card-bg: #eeeeee;
+        --border-color: #bf3131;
+        --modal-overlay: rgba(0, 0, 0, 0.5);
+      }
+
+      html.dark {
+        --bg-primary: #111827;
+        --text-primary: #e5e7eb;
+        --text-secondary: #f87171;
+        --card-bg: #1f2937;
+        --border-color: #f87171;
+        --modal-overlay: rgba(0, 0, 0, 0.75);
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+
+      /* Theme CSS overrides */
+      .theme-card {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+      }
+
+      .theme-text-primary {
+        color: var(--text-primary);
+      }
+
+      .theme-text-secondary {
+        color: var(--text-secondary);
+      }
+
+      .theme-border {
+        border-color: var(--border-color);
+      }
+
+      #modal-overlay {
+        background-color: var(--modal-overlay);
+      }
+
+      /* Dark theme card styles */
+      html.dark .bg-\[\#EEEEEE\] {
+        background-color: var(--card-bg);
+      }
+
+      html.dark .text-\[\#7D0A0A\] {
+        color: var(--text-primary);
+      }
+
+      html.dark .text-\[\#BF3131\] {
+        color: var(--text-secondary);
+      }
+
+      html.dark .border-\[\#BF3131\] {
+        border-color: var(--border-color);
+      }
+
+      html.dark .bg-\[\#BF3131\] {
+        background-color: #f87171;
+      }
+
+      html.dark .bg-\[\#7D0A0A\] {
+        background-color: #b91c1c;
+      }
+
+      html.dark .from-\[\#FFD700\] {
+        --tw-gradient-from: #b45309;
+      }
+
+      html.dark .to-\[\#FFA500\] {
+        --tw-gradient-to: #92400e;
+      }
+
+      /* Transition for smooth theme switching */
+      body,
+      .bg-\[\#EEEEEE\],
+      .text-\[\#7D0A0A\],
+      .text-\[\#BF3131\],
+      .border-\[\#BF3131\],
+      .bg-\[\#BF3131\],
+      .bg-\[\#7D0A0A\],
+      .from-\[\#FFD700\],
+      .to-\[\#FFA500\] {
+        transition: background-color 0.3s ease, color 0.3s ease,
+          border-color 0.3s ease;
+      }
     </style>
+    <script>
+      // Configure tailwind
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {},
+        },
+      };
+
+      // Theme detection and initialization
+      document.addEventListener("DOMContentLoaded", () => {
+        const htmlElement = document.documentElement;
+        const themeToggle = document.getElementById("theme-toggle");
+        const prefersDarkMode = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "dark" || (!savedTheme && prefersDarkMode)) {
+          htmlElement.classList.remove("light");
+          htmlElement.classList.add("dark");
+          updateToggleIcon("dark");
+        } else {
+          htmlElement.classList.remove("dark");
+          htmlElement.classList.add("light");
+          updateToggleIcon("light");
+        }
+
+        // Theme toggle functionality
+        themeToggle.addEventListener("click", () => {
+          if (htmlElement.classList.contains("dark")) {
+            htmlElement.classList.remove("dark");
+            htmlElement.classList.add("light");
+            localStorage.setItem("theme", "light");
+            updateToggleIcon("light");
+          } else {
+            htmlElement.classList.remove("light");
+            htmlElement.classList.add("dark");
+            localStorage.setItem("theme", "dark");
+            updateToggleIcon("dark");
+          }
+        });
+
+        function updateToggleIcon(theme) {
+          themeToggle.innerHTML =
+            theme === "dark"
+              ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>`
+              : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#7D0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>`;
+        }
+      });
+    </script>
   </head>
-  <body class="bg-[#EAD196] text-[#7D0A0A] mb-24">
+  <body class="mb-24">
+    <!-- Theme Toggle Button -->
+    <button
+      id="theme-toggle"
+      class="theme-toggle"
+      aria-label="Toggle dark mode"
+    >
+      <!-- Icon will be set by JavaScript -->
+    </button>
+
     <!-- Hero Section -->
     <section class="min-h-[60vh] flex items-center justify-center p-4 sm:p-6">
       <div
-        class="max-w-4xl w-full bg-[#EEEEEE] rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2 border-4 sm:border-8 border-[#BF3131]"
+        class="max-w-4xl w-full theme-card bg-[#EEEEEE] rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2 border-4 sm:border-8 border-[#BF3131]"
       >
-        <div class="p-4 sm:p-8 flex flex-col justify-center">
+        <div class="p-4 sm:p-8 flex flex-col justify-center gap-6">
           <h1
             class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-[#7D0A0A] font-['Press_Start_2P'] leading-relaxed"
           >
-            Retro Zero
+            Arcade Zero
           </h1>
-          <p class="text-base sm:text-xl mb-4 sm:mb-6 text-[#BF3131]">
-            Step into a world of pixelated nostalgia and
+          <!-- <p class="text-base sm:text-xl mb-4 sm:mb-6 text-[#BF3131]">
+            Step into a world of pixelated nostalgia and steampunk-inspired
             gaming glory!
-          </p>
+          </p> -->
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
               href="#consoles"
@@ -47,35 +238,22 @@
         <div
           class="relative bg-[#BF3131] flex items-center justify-center p-4 sm:p-8"
         >
-          <div id="consoles"
+          <div class="absolute inset-0 opacity-10 bg-repeat"></div>
+          <div
+            id="consoles"
             class="absolute inset-0 opacity-10 bg-repeat"
-            style="
-              background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PGcgZmlsbD0iIzAwMCIgb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMTEgMThhNyA3IDAgMCAwLTcgN3Y0NmE3IDcgMCAwIDAgNyA3aDc4YTcgNyAwIDAgMCA3LTdWMjVhNyA3IDAgMCAwLTctN0gxMXptMC0yaDc4YTkgOSAwIDAgMSA5IDl2NDZhOSA5IDAgMCAxLTkgOUgxMWE5IDkgMCAwIDEtOS05VjI1YTkgOSAwIDAgMSA5LTl6Ii8+PHBhdGggZD0iTTQzIDMzYTQgNCAwIDEgMCAwIDggNCA0IDAgMCAwIDAtOHptMC0yYTYgNiAwIDEgMSAwIDEyIDYgNiAwIDAgMSAwLTEyeiIvPjwvZz48L3N2Zz4=');
-            "
           ></div>
           <div class="relative z-10 transform rotate-12 shadow-2xl max-w-full">
-            <div
-              class="bg-[#EEEEEE] p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 sm:border-4 border-[#7D0A0A]"
-            >
-              <div
-                class="w-48 sm:w-64 h-36 sm:h-48 bg-gray-800 rounded-lg overflow-hidden relative"
-              >
-                <div
-                  class="absolute inset-0 bg-gradient-to-br from-transparent to-black opacity-50"
-                ></div>
-                <div
-                  class="absolute top-3 sm:top-4 left-3 sm:left-4 w-8 sm:w-12 h-8 sm:h-12 bg-[#BF3131] rounded-full"
-                ></div>
-                <div
-                  class="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 w-12 sm:w-16 h-6 sm:h-8 bg-[#7D0A0A] rounded-lg"
-                ></div>
-              </div>
-            </div>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Nes_controller.svg/612px-Nes_controller.svg.png"
+              alt="NES Controller"
+              class="shadow-2xl shadow-black"
+            />
           </div>
         </div>
       </div>
     </section>
-    
+
     <!-- Console Grid Container -->
     <div
       id="console-container"
@@ -84,34 +262,76 @@
 
     <footer class="py-8">
       <div class="max-w-6xl mt-10 mx-auto text-center">
-          Built with ❤️ in Bengaluru by <a href="https://sm0l.dev" target="_blank" class="underline">sm0l.dev</a>
+        Built with ❤️ in Bengaluru by
+        <a href="https://sm0l.dev" target="_blank" class="underline"
+          >sm0l.dev</a
+        >
       </div>
     </footer>
-    
+
     <!-- Modal Overlay -->
-    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
-      <div id="modal-container" class="bg-[#EEEEEE] max-w-2xl w-full mx-4 rounded-xl border-4 border-[#BF3131] shadow-2xl transform transition-all">
-        <div class="flex justify-between items-center p-4 border-b-2 border-[#BF3131]">
-          <h2 id="modal-title" class="font-['Press_Start_2P'] text-lg text-[#7D0A0A]">Console Details</h2>
-          <button id="modal-close" class="text-[#7D0A0A] hover:text-[#BF3131] font-bold text-2xl">&times;</button>
+    <div
+      id="modal-overlay"
+      class="fixed inset-0 hidden z-50 flex items-center justify-center"
+    >
+      <div
+        id="modal-container"
+        class="bg-[#EEEEEE] max-w-2xl w-full mx-4 rounded-xl border-4 border-[#BF3131] shadow-2xl transform transition-all"
+      >
+        <div
+          class="flex justify-between items-center p-4 border-b-2 border-[#BF3131]"
+        >
+          <h2
+            id="modal-title"
+            class="font-['Press_Start_2P'] text-lg text-[#7D0A0A]"
+          >
+            Console Details
+          </h2>
+          <button
+            id="modal-close"
+            class="text-[#7D0A0A] hover:text-[#BF3131] font-bold text-2xl"
+          >
+            &times;
+          </button>
         </div>
         <div class="p-6">
           <div class="grid md:grid-cols-2 gap-6">
             <!-- Console Image -->
-            <div class="bg-[#BF3131] bg-opacity-10 rounded-lg p-4 flex items-center justify-center">
-              <img id="modal-image" src="" alt="Console" class="max-h-64 object-contain" />
+            <div
+              class="bg-[#BF3131] bg-opacity-10 rounded-lg p-4 flex items-center justify-center"
+            >
+              <img
+                id="modal-image"
+                src=""
+                alt="Console"
+                class="max-h-64 object-contain"
+              />
             </div>
-            
+
             <!-- Console Card (Pokémon style) -->
-            <div class="bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-lg overflow-hidden border-4 border-[#7D0A0A] shadow-lg">
+            <div
+              class="bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-lg overflow-hidden border-4 border-[#7D0A0A] shadow-lg"
+            >
               <!-- Card Header -->
               <div class="bg-[#BF3131] py-2 px-4 border-b-4 border-[#7D0A0A]">
-                <h3 id="modal-name" class="font-['Press_Start_2P'] text-[#EAD196] text-center text-lg">Console Name</h3>
+                <h3
+                  id="modal-name"
+                  class="font-['Press_Start_2P'] text-[#EAD196] text-center text-lg"
+                >
+                  Console Name
+                </h3>
               </div>
               <!-- Card Image -->
               <div class="h-48 overflow-hidden relative">
-                <div class="absolute inset-0 bg-white bg-opacity-20 flex items-center justify-center">
-                  <img id="modal-card-image" src="" alt="Console" class="max-h-full max-w-full object-contain" />
+                <div
+                  class="absolute inset-0 bg-white bg-opacity-20 flex items-center justify-center"
+                >
+                  <img
+                    id="modal-card-image"
+                    src=""
+                    alt="Console"
+                    class="max-h-full max-w-full object-contain"
+                  />
                 </div>
               </div>
               <!-- Card Stats -->
@@ -129,24 +349,36 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Console Details -->
           <div class="mt-6">
-            <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-sm mb-2">Specs & History</h4>
+            <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-sm mb-2">
+              Specs & History
+            </h4>
             <div id="modal-description" class="text-[#BF3131] text-sm">
               Console description goes here.
             </div>
-            
+
             <div class="mt-4 grid grid-cols-2 gap-4">
               <div>
-                <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-xs mb-2">Notable Games</h4>
-                <ul id="modal-games" class="text-[#BF3131] text-xs list-disc list-inside">
+                <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-xs mb-2">
+                  Notable Games
+                </h4>
+                <ul
+                  id="modal-games"
+                  class="text-[#BF3131] text-xs list-disc list-inside"
+                >
                   <!-- Games will be inserted here -->
                 </ul>
               </div>
               <div>
-                <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-xs mb-2">Fun Facts</h4>
-                <ul id="modal-facts" class="text-[#BF3131] text-xs list-disc list-inside">
+                <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-xs mb-2">
+                  Fun Facts
+                </h4>
+                <ul
+                  id="modal-facts"
+                  class="text-[#BF3131] text-xs list-disc list-inside"
+                >
                   <!-- Facts will be inserted here -->
                 </ul>
               </div>
@@ -154,8 +386,18 @@
           </div>
         </div>
         <div class="bg-[#7D0A0A] py-3 px-4 flex justify-end">
-          <button id="modal-prev" class="bg-[#EAD196] text-[#7D0A0A] px-4 py-2 rounded-full mr-2 font-['Press_Start_2P'] text-xs hover:bg-[#BF3131] hover:text-[#EAD196] transition duration-300">Prev</button>
-          <button id="modal-next" class="bg-[#EAD196] text-[#7D0A0A] px-4 py-2 rounded-full font-['Press_Start_2P'] text-xs hover:bg-[#BF3131] hover:text-[#EAD196] transition duration-300">Next</button>
+          <button
+            id="modal-prev"
+            class="bg-[#EAD196] text-[#7D0A0A] px-4 py-2 rounded-full mr-2 font-['Press_Start_2P'] text-xs hover:bg-[#BF3131] hover:text-[#EAD196] transition duration-300"
+          >
+            Prev
+          </button>
+          <button
+            id="modal-next"
+            class="bg-[#EAD196] text-[#7D0A0A] px-4 py-2 rounded-full font-['Press_Start_2P'] text-xs hover:bg-[#BF3131] hover:text-[#EAD196] transition duration-300"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

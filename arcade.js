@@ -1,7 +1,10 @@
-
-
 function getPlaceholderImage(name) {
-    return `https://placehold.co/400x300/7D0A0A/EAD196?text=${encodeURIComponent(name)}`;
+    // Check if we're in dark mode
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    // Use different colored placeholders for dark/light mode
+    const bgColor = isDarkMode ? '1F2937' : '7D0A0A';
+    const textColor = isDarkMode ? 'F87171' : 'EAD196';
+    return `https://placehold.co/400x300/${bgColor}/${textColor}?text=${encodeURIComponent(name)}`;
 }
 
 // Function to create a console card with click handler for modal
@@ -37,18 +40,23 @@ function createConsoleCard(gameConsole, index) {
 // Sort consoles by release year
 const sortedConsoles = consoleData.sort((a, b) => a.releaseYear - b.releaseYear);
 
-// Insert console cards into the grid
-const grid = document.getElementById("console-container");
-sortedConsoles.forEach((gameConsole, index) => {
-    grid.appendChild(createConsoleCard(gameConsole, index));
-});
-
 // Modal functionality
 let currentConsoleIndex = 0;
-const modalOverlay = document.getElementById("modal-overlay");
-const modalClose = document.getElementById("modal-close");
-const modalPrev = document.getElementById("modal-prev");
-const modalNext = document.getElementById("modal-next");
+let modalOverlay, modalClose, modalPrev, modalNext;
+
+// Function to initialize the console grid
+function initConsoleGrid() {
+    // Clear existing cards
+    const grid = document.getElementById("console-container");
+    if (!grid) return; // Safety check
+    
+    grid.innerHTML = '';
+    
+    // Insert console cards into the grid
+    sortedConsoles.forEach((gameConsole, index) => {
+        grid.appendChild(createConsoleCard(gameConsole, index));
+    });
+}
 
 // Function to open modal with console details
 function openModal(index) {
@@ -67,6 +75,7 @@ function closeModal() {
 // Function to update modal content
 function updateModalContent(index) {
     const console = sortedConsoles[index];
+    const isDarkMode = document.documentElement.classList.contains('dark');
 
     // Update modal title and images
     document.getElementById("modal-title").textContent = console.name;
@@ -81,7 +90,7 @@ function updateModalContent(index) {
     document.getElementById("modal-year").textContent = console.releaseYear;
 
     // Format price with dollar sign if available
-    const price = console.originalPrice ? `${console.originalPrice}` : "Unknown";
+    const price = console.originalPrice ? `$${console.originalPrice}` : "Unknown";
     document.getElementById("modal-price").textContent = price;
 
     // Format sales with abbreviation if available
@@ -143,23 +152,54 @@ function nextConsole() {
     updateModalContent(currentConsoleIndex);
 }
 
-// Event listeners for modal buttons
-modalClose.addEventListener("click", closeModal);
-modalPrev.addEventListener("click", prevConsole);
-modalNext.addEventListener("click", nextConsole);
-
-// Close modal when clicking outside
-modalOverlay.addEventListener("click", (e) => {
-    if (e.target === modalOverlay) {
-        closeModal();
+// Initialize everything when DOM is fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Get modal elements
+    modalOverlay = document.getElementById("modal-overlay");
+    modalClose = document.getElementById("modal-close");
+    modalPrev = document.getElementById("modal-prev");
+    modalNext = document.getElementById("modal-next");
+    
+    // Initialize console grid
+    initConsoleGrid();
+    
+    // Add event listeners for modal
+    if (modalClose) modalClose.addEventListener("click", closeModal);
+    if (modalPrev) modalPrev.addEventListener("click", prevConsole);
+    if (modalNext) modalNext.addEventListener("click", nextConsole);
+    
+    // Close modal when clicking outside
+    if (modalOverlay) {
+        modalOverlay.addEventListener("click", (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
     }
-});
-
-// Keyboard navigation
-document.addEventListener("keydown", (e) => {
-    if (modalOverlay.classList.contains("hidden")) return;
-
-    if (e.key === "Escape") closeModal();
-    if (e.key === "ArrowLeft") prevConsole();
-    if (e.key === "ArrowRight") nextConsole();
+    
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+        if (modalOverlay && !modalOverlay.classList.contains("hidden")) {
+            if (e.key === "Escape") closeModal();
+            if (e.key === "ArrowLeft") prevConsole();
+            if (e.key === "ArrowRight") nextConsole();
+        }
+    });
+    
+    // Watch for theme changes and update placeholder images
+    const htmlElement = document.documentElement;
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'class') {
+                // Refresh the console grid when theme changes
+                initConsoleGrid();
+                // If modal is open, update its content too
+                if (modalOverlay && !modalOverlay.classList.contains('hidden')) {
+                    updateModalContent(currentConsoleIndex);
+                }
+            }
+        });
+    });
+    
+    observer.observe(htmlElement, { attributes: true });
 });
