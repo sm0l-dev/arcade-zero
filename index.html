@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,13 +16,189 @@
         font-family: "Space Mono", serif;
         font-weight: bold;
       }
+
+      /* Theme toggle animation */
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 100;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+      }
+      
+      .theme-toggle:hover {
+        transform: scale(1.1);
+      }
+
+      .theme-toggle svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      /* Theme Variables */
+      :root {
+        --bg-primary: #EAD196;
+        --text-primary: #7D0A0A;
+        --text-secondary: #BF3131;
+        --card-bg: #EEEEEE;
+        --border-color: #BF3131;
+        --modal-overlay: rgba(0, 0, 0, 0.5);
+      }
+
+      html.dark {
+        --bg-primary: #111827;
+        --text-primary: #E5E7EB;
+        --text-secondary: #F87171;
+        --card-bg: #1F2937;
+        --border-color: #F87171;
+        --modal-overlay: rgba(0, 0, 0, 0.75);
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+
+      /* Theme CSS overrides */
+      .theme-card {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+      }
+
+      .theme-text-primary {
+        color: var(--text-primary);
+      }
+
+      .theme-text-secondary {
+        color: var(--text-secondary);
+      }
+
+      .theme-border {
+        border-color: var(--border-color);
+      }
+
+      #modal-overlay {
+        background-color: var(--modal-overlay);
+      }
+
+      /* Dark theme card styles */
+      html.dark .bg-\[\#EEEEEE\] {
+        background-color: var(--card-bg);
+      }
+
+      html.dark .text-\[\#7D0A0A\] {
+        color: var(--text-primary);
+      }
+
+      html.dark .text-\[\#BF3131\] {
+        color: var(--text-secondary);
+      }
+
+      html.dark .border-\[\#BF3131\] {
+        border-color: var(--border-color);
+      }
+
+      html.dark .bg-\[\#BF3131\] {
+        background-color: #F87171;
+      }
+
+      html.dark .bg-\[\#7D0A0A\] {
+        background-color: #B91C1C;
+      }
+      
+      html.dark .from-\[\#FFD700\] {
+        --tw-gradient-from: #B45309;
+      }
+      
+      html.dark .to-\[\#FFA500\] {
+        --tw-gradient-to: #92400E;
+      }
+
+      /* Transition for smooth theme switching */
+      body, .bg-\[\#EEEEEE\], .text-\[\#7D0A0A\], .text-\[\#BF3131\], .border-\[\#BF3131\],
+      .bg-\[\#BF3131\], .bg-\[\#7D0A0A\], .from-\[\#FFD700\], .to-\[\#FFA500\] {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
     </style>
+    <script>
+      // Configure tailwind
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {}
+        }
+      }
+
+      // Theme detection and initialization
+      document.addEventListener('DOMContentLoaded', () => {
+        const htmlElement = document.documentElement;
+        const themeToggle = document.getElementById('theme-toggle');
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Check for saved theme preference or use system preference
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDarkMode)) {
+          htmlElement.classList.remove('light');
+          htmlElement.classList.add('dark');
+          updateToggleIcon('dark');
+        } else {
+          htmlElement.classList.remove('dark');
+          htmlElement.classList.add('light');
+          updateToggleIcon('light');
+        }
+        
+        // Theme toggle functionality
+        themeToggle.addEventListener('click', () => {
+          if (htmlElement.classList.contains('dark')) {
+            htmlElement.classList.remove('dark');
+            htmlElement.classList.add('light');
+            localStorage.setItem('theme', 'light');
+            updateToggleIcon('light');
+          } else {
+            htmlElement.classList.remove('light');
+            htmlElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            updateToggleIcon('dark');
+          }
+        });
+        
+        function updateToggleIcon(theme) {
+          themeToggle.innerHTML = theme === 'dark' 
+            ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>`
+            : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#7D0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>`;
+        }
+      });
+    </script>
   </head>
-  <body class="bg-[#EAD196] text-[#7D0A0A] mb-24">
+  <body class="mb-24">
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+      <!-- Icon will be set by JavaScript -->
+    </button>
+
     <!-- Hero Section -->
     <section class="min-h-[60vh] flex items-center justify-center p-4 sm:p-6">
       <div
-        class="max-w-4xl w-full bg-[#EEEEEE] rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2 border-4 sm:border-8 border-[#BF3131]"
+        class="max-w-4xl w-full theme-card bg-[#EEEEEE] rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2 border-4 sm:border-8 border-[#BF3131]"
       >
         <div class="p-4 sm:p-8 flex flex-col justify-center">
           <h1
@@ -89,7 +265,7 @@
     </footer>
     
     <!-- Modal Overlay -->
-    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+    <div id="modal-overlay" class="fixed inset-0 hidden z-50 flex items-center justify-center">
       <div id="modal-container" class="bg-[#EEEEEE] max-w-2xl w-full mx-4 rounded-xl border-4 border-[#BF3131] shadow-2xl transform transition-all">
         <div class="flex justify-between items-center p-4 border-b-2 border-[#BF3131]">
           <h2 id="modal-title" class="font-['Press_Start_2P'] text-lg text-[#7D0A0A]">Console Details</h2>
