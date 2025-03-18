@@ -17,7 +17,8 @@
     </style>
   </head>
   <body class="bg-[#EAD196] text-[#7D0A0A]">
-    <div class="min-h-screen flex items-center justify-center p-4 sm:p-6">
+    <!-- Hero Section -->
+    <section class="min-h-[80vh] flex items-center justify-center p-4 sm:p-6">
       <div
         class="max-w-4xl w-full bg-[#EEEEEE] rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2 border-4 sm:border-8 border-[#BF3131]"
       >
@@ -78,10 +79,14 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
+    <div
+      id="console-container"
+      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-4xl w-full mx-auto"
+    ></div>
 
     <!-- Consoles Grid Section -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
       <h2
         class="text-xl sm:text-3xl font-['Press_Start_2P'] text-center mb-8 sm:mb-12 text-[#7D0A0A]"
       >
@@ -92,7 +97,7 @@
       >
         <!-- Console cards will be dynamically inserted here -->
       </div>
-    </div>
+    </section>
   </body>
 
   <script>
@@ -119,7 +124,7 @@
         inflationAdjustedPrice: 882,
         globalSales: 30000000,
         imageUrl:
-          "https://en.wikipedia.org/wiki/File:Atari-2600-Tele-Games-FL.jpg",
+          "https://pub-2e8272d5c74b4466a558e2a7dedb63cf.r2.dev/Atari-2600-Tele-Games-FL.png",
       },
       {
         generation: 2,
@@ -258,15 +263,16 @@
         gameConsole.imageUrl || getPlaceholderImage(gameConsole.name);
       console.log(consoleUrl);
       const card = document.createElement("div");
-      card.className =
-        "bg-[#EEEEEE] rounded-lg overflow-hidden shadow-lg border-2 border-[#BF3131] transition-transform hover:scale-105";
+      card.className = "";
+
+      // ("bg-[#EEEEEE] rounded-lg overflow-hidden shadow-lg border-2 border-[#BF3131] transition-transform hover:scale-105");
 
       card.innerHTML = `
-        <div class="aspect-[4/3] overflow-hidden bg-[#7D0A0A]">
+        <div class="aspect-[4/3] ">
           <img 
             src="${consoleUrl}" 
             alt="${gameConsole.name}" 
-            class="w-full h-full object-cover"
+            class="w-full h-full object-contain"
             onerror="this.src='${getPlaceholderImage(gameConsole.name)}'"
           >
         </div>
@@ -287,7 +293,7 @@
     );
 
     // Insert console cards into the grid
-    const grid = document.querySelector(".grid");
+    const grid = document.querySelector("#console-container");
     sortedConsoles.forEach((gameConsole) => {
       grid.appendChild(createConsoleCard(gameConsole));
     });
