@@ -7,6 +7,9 @@ function createConsoleCard(gameConsole, index) {
 
   card.innerHTML = `
           <div class="aspect-[4/3] dark:bg-[#b91c1c] bg-[#7D0A0A] bg-opacity-10 p-2">
+            <div class="bg-[#BF3131] dark:bg-transparent py-2 px-4 border-b-4 border-[#7D0A0A]">
+                    <h3 class="font-['Press_Start_2P'] text-[#EAD196] dark:text-[#7d0a0a] text-center text-lg">${gameConsole.name}</h3>
+                  </div>
             <img
               src="${gameConsole.imageUrl}"
               alt="${gameConsole.name}"
@@ -14,15 +17,10 @@ function createConsoleCard(gameConsole, index) {
             >
           </div>
           <div class="p-4">
-            <h3 class="font-['Press_Start_2P'] text-xs sm:text-sm dark:text-[#e5e7eb]  text-[#7D0A0A] mb-1">${
-              gameConsole.name
-            }</h3>
-            <p class="dark:text-[#f87171] text-[#bf3131] text-xs">${
-              gameConsole.releaseYear
-            }</p>
-            <p class="dark:text-[#f87171] text-[#bf3131] text-xs mt-1">Gen ${
-              gameConsole.generation || "?"
-            }</p>
+            <p class="dark:text-[#f87171] text-[#bf3131] text-sm">${gameConsole.releaseYear
+    }</p>
+            <p class="dark:text-[#f87171] text-[#bf3131] text-sm mt-1">Gen ${gameConsole.generation || "?"
+    }</p>
           </div>
         `;
 
@@ -97,9 +95,9 @@ function updateModalContent(index) {
   let salesText = "Unknown";
   if (console.globalSales) {
     if (console.globalSales >= 1000000) {
-      salesText = (console.globalSales / 1000000).toFixed(2) + "M";
+      salesText = (console.globalSales / 1000000).toFixed(0) + "M UNITS";
     } else if (console.globalSales >= 1000) {
-      salesText = (console.globalSales / 1000).toFixed(2) + "K";
+      salesText = (console.globalSales / 1000).toFixed(0) + "K UNITS";
     } else {
       salesText = console.globalSales.toString();
     }
