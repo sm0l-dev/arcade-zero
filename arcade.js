@@ -7,20 +7,22 @@ function createConsoleCard(gameConsole, index) {
 
   card.innerHTML = `
           <div class="aspect-[4/3] dark:bg-arcade-darkSecondary bg-arcade-primary bg-opacity-10 p-2">
+            <div class="bg-arcade-secondary dark:bg-transparent py-2 px-4 border-b-4 border-arcade-primary">
+                    <h3 class="font-['Press_Start_2P'] text-arcade-cream dark:text-arcade-primary text-center text-lg">${
+                      gameConsole.name
+                    }</h3>
+                  </div>
             <img
               src="${gameConsole.imageUrl}"
               alt="${gameConsole.name}"
               class="w-full h-full object-contain"
             >
           </div>
-          <div class="p-4 dark:bg-stone-100/10">
-            <h3 class="font-['Press_Start_2P'] text-xs sm:text-sm dark:text-arcade-darkText text-arcade-primary mb-1">${
-              gameConsole.name
-            }</h3>
-            <p class="dark:text-arcade-darkAccent text-arcade-secondary text-xs">${
+          <div class="p-4">
+            <p class="dark:text-arcade-darkAccent text-arcade-secondary text-sm">${
               gameConsole.releaseYear
             }</p>
-            <p class="dark:text-arcade-darkAccent text-arcade-secondary text-xs mt-1">Gen ${
+            <p class="dark:text-arcade-darkAccent text-arcade-secondary text-sm mt-1">Gen ${
               gameConsole.generation || "?"
             }</p>
           </div>
@@ -94,9 +96,9 @@ function updateModalContent(index) {
   let salesText = "Unknown";
   if (console.globalSales) {
     if (console.globalSales >= 1000000) {
-      salesText = (console.globalSales / 1000000).toFixed(2) + "M";
+      salesText = (console.globalSales / 1000000).toFixed(0) + "M UNITS";
     } else if (console.globalSales >= 1000) {
-      salesText = (console.globalSales / 1000).toFixed(2) + "K";
+      salesText = (console.globalSales / 1000).toFixed(0) + "K UNITS";
     } else {
       salesText = console.globalSales.toString();
     }
