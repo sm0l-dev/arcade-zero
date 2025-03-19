@@ -1,32 +1,20 @@
 // Function to create a console card with click handler for modal
 function createConsoleCard(gameConsole, index) {
-  const card = document.createElement("div");
-  card.className =
-    "bg-arcade-light dark:bg-arcade-dark rounded-lg sm:rounded-2xl overflow-hidden shadow-lg border-2 border-arcade-secondary dark:border-arcade-darkAccent transition-transform hover:scale-105 cursor-pointer";
+  // Clone the template
+  const template = document.getElementById("console-card-template");
+  const card = template.content.firstElementChild.cloneNode(true);
+
+  // Set data attribute for modal navigation
   card.setAttribute("data-index", index);
 
-  card.innerHTML = `
-          <div class="aspect-[4/3] dark:bg-arcade-darkSecondary bg-arcade-primary bg-opacity-10 p-2">
-            <div class="bg-arcade-secondary dark:bg-transparent py-2 px-4 border-b-4 border-arcade-primary">
-                    <h3 class="font-['Press_Start_2P'] text-arcade-cream dark:text-arcade-primary text-center text-lg">${
-                      gameConsole.name
-                    }</h3>
-                  </div>
-            <img
-              src="${gameConsole.imageUrl}"
-              alt="${gameConsole.name}"
-              class="w-full h-full object-contain"
-            >
-          </div>
-          <div class="p-4">
-            <p class="dark:text-arcade-darkAccent text-arcade-secondary text-sm">${
-              gameConsole.releaseYear
-            }</p>
-            <p class="dark:text-arcade-darkAccent text-arcade-secondary text-sm mt-1">Gen ${
-              gameConsole.generation || "?"
-            }</p>
-          </div>
-        `;
+  // Populate the card with console data
+  card.querySelector("h3").textContent = gameConsole.name;
+  card.querySelector("img").src = gameConsole.imageUrl;
+  card.querySelector("img").alt = gameConsole.name;
+  card.querySelector(".release-year").textContent = gameConsole.releaseYear;
+  card.querySelector(".generation").textContent = gameConsole.generation
+    ? `Gen ${gameConsole.generation}`
+    : "Gen ?";
 
   // Add click event to open modal
   card.addEventListener("click", () => openModal(index));
