@@ -2,11 +2,16 @@
 function createConsoleCard(gameConsole, index) {
   const card = document.createElement("div");
   card.className =
-    "bg-[#EEEEEE] dark:bg-[#1f2937] rounded-lg sm:rounded-2xl overflow-hidden shadow-lg border-2 border-[#BF3131] dark:border-[#f87171] transition-transform hover:scale-105 cursor-pointer";
+    "bg-arcade-light dark:bg-arcade-dark rounded-lg sm:rounded-2xl overflow-hidden shadow-lg border-2 border-arcade-secondary dark:border-arcade-darkAccent transition-transform hover:scale-105 cursor-pointer";
   card.setAttribute("data-index", index);
 
   card.innerHTML = `
-          <div class="aspect-[4/3] dark:bg-[#b91c1c] bg-[#7D0A0A] bg-opacity-10 p-2">
+          <div class="aspect-[4/3] dark:bg-arcade-darkSecondary bg-arcade-primary bg-opacity-10 p-2">
+            <div class="bg-arcade-secondary dark:bg-transparent py-2 px-4 border-b-4 border-arcade-primary">
+                    <h3 class="font-['Press_Start_2P'] text-arcade-cream dark:text-arcade-primary text-center text-lg">${
+                      gameConsole.name
+                    }</h3>
+                  </div>
             <img
               src="${gameConsole.imageUrl}"
               alt="${gameConsole.name}"
@@ -14,13 +19,10 @@ function createConsoleCard(gameConsole, index) {
             >
           </div>
           <div class="p-4">
-            <h3 class="font-['Press_Start_2P'] text-xs sm:text-sm dark:text-[#e5e7eb]  text-[#7D0A0A] mb-1">${
-              gameConsole.name
-            }</h3>
-            <p class="dark:text-[#f87171] text-[#bf3131] text-xs">${
+            <p class="dark:text-arcade-darkAccent text-arcade-secondary text-sm">${
               gameConsole.releaseYear
             }</p>
-            <p class="dark:text-[#f87171] text-[#bf3131] text-xs mt-1">Gen ${
+            <p class="dark:text-arcade-darkAccent text-arcade-secondary text-sm mt-1">Gen ${
               gameConsole.generation || "?"
             }</p>
           </div>
@@ -74,10 +76,7 @@ function updateModalContent(index) {
   const console = sortedConsoles[index];
   const isDarkMode = document.documentElement.classList.contains("dark");
 
-  // Update modal title and images
-  // document.getElementById("modal-title").textContent = console.name;
-  // document.getElementById("modal-image").src = console.imageUrl || getPlaceholderImage(console.name);
-  // document.getElementById("modal-image").alt = console.name;
+  // Update modal card image
   document.getElementById("modal-card-image").src =
     console.imageUrl || getPlaceholderImage(console.name);
   document.getElementById("modal-card-image").alt = console.name;
@@ -97,9 +96,9 @@ function updateModalContent(index) {
   let salesText = "Unknown";
   if (console.globalSales) {
     if (console.globalSales >= 1000000) {
-      salesText = (console.globalSales / 1000000).toFixed(2) + "M";
+      salesText = (console.globalSales / 1000000).toFixed(0) + "M UNITS";
     } else if (console.globalSales >= 1000) {
-      salesText = (console.globalSales / 1000).toFixed(2) + "K";
+      salesText = (console.globalSales / 1000).toFixed(0) + "K UNITS";
     } else {
       salesText = console.globalSales.toString();
     }
@@ -187,21 +186,4 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.key === "ArrowRight") nextConsole();
     }
   });
-
-  // Watch for theme changes and update placeholder images
-  const htmlElement = document.documentElement;
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.attributeName === "class") {
-        // Refresh the console grid when theme changes
-        initConsoleGrid();
-        // If modal is open, update its content too
-        if (modalOverlay && !modalOverlay.classList.contains("hidden")) {
-          updateModalContent(currentConsoleIndex);
-        }
-      }
-    });
-  });
-
-  observer.observe(htmlElement, { attributes: true });
 });

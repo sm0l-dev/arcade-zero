@@ -14,7 +14,7 @@ const consoleData = [
     colors: "Black and white",
     mediaFormat: "Built-in games with plastic overlays",
     description:
-      "The world's first commercial home video game console. Instead of using digital logic, it used analog circuitry and television screen overlays to simulate various games.",
+      "The world's first commercial home video game console! Instead of using digital logic, it used analog circuitry and television screen overlays to simulate various games.",
     notableGames: ["Table Tennis", "Ski", "Simon Says", "Football"],
     funFacts: [
       "Used plastic overlays on the TV screen to add color and graphics",

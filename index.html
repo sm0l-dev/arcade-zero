@@ -3,11 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Arcade Zero" />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+
+    <!-- Primary Meta Tags -->
+    <title>Arcade Zero</title>
+    <meta name="title" content="Arcade Zero" />
     <meta
       name="description"
-      content="Experience the fusion of retro gaming and steampunk aesthetics in our unique arcade collection!"
+      content="Step into a world of pixelated nostalgia and gaming glory!"
     />
-    <title>Retro Gaming Steampunk Hero</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://arcade.sm0l.dev/" />
+    <meta property="og:title" content="Arcade Zero" />
+    <meta
+      property="og:description"
+      content="Step into a world of pixelated nostalgia and gaming glory!"
+    />
+    <meta property="og:image" content="assets/images/arcade-zero-dark.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://arcade.sm0l.dev/" />
+    <meta property="twitter:title" content="Arcade Zero" />
+    <meta
+      property="twitter:description"
+      content="Step into a world of pixelated nostalgia and gaming glory!"
+    />
+    <meta
+      property="twitter:image"
+      content="assets/images/arcade-zero-dark.jpg"
+    />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="consoles.js"></script>
     <style>
@@ -46,7 +89,21 @@
       tailwind.config = {
         darkMode: "class",
         theme: {
-          extend: {},
+          extend: {
+            colors: {
+              arcade: {
+                primary: "#7D0A0A", // Deep red
+                secondary: "#BF3131", // Medium red
+                gold: "#FFBE00", // Gold
+                cream: "#EAD196", // Light gold/cream
+                light: "#EEEEEE", // Light gray
+                dark: "#1f2937", // Dark gray/blue
+                darkText: "#e5e7eb", // Light gray for dark mode text
+                darkAccent: "#f87171", // Light red for dark mode
+                darkSecondary: "#b91c1c", // Medium red for dark mode
+              },
+            },
+          },
         },
       };
 
@@ -89,7 +146,7 @@
         function updateToggleIcon(theme) {
           themeToggle.innerHTML =
             theme === "dark"
-              ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              ? `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-arcade-darkAccent" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="5"></circle>
                 <line x1="12" y1="1" x2="12" y2="3"></line>
                 <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -100,14 +157,14 @@
                 <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
               </svg>`
-              : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#7D0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="text-arcade-primary" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>`;
         }
       });
     </script>
   </head>
-  <body class="mb-24 dark:bg-[#1f2937] bg-[#ead196]">
+  <body class="mb-24 dark:bg-arcade-dark bg-arcade-cream">
     <!-- Theme Toggle Button -->
     <button
       id="theme-toggle"
@@ -120,22 +177,22 @@
     <!-- Hero Section -->
     <section class="min-h-[60vh] flex items-center justify-center p-4 sm:p-6">
       <div
-        class="max-w-4xl w-full theme-card bg-[#EEEEEE] dark:bg-[#1f2937] rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2 border-4 sm:border-8 border-[#BF3131] dark:border-[#f87171]"
+        class="max-w-4xl w-full theme-card bg-arcade-light dark:bg-arcade-dark rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2 border-4 sm:border-8 border-arcade-secondary dark:border-arcade-darkAccent"
       >
         <div class="p-4 sm:p-8 flex flex-col justify-center gap-6">
           <h1
-            class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-[#7D0A0A] dark:text-[#e5e7eb] font-['Press_Start_2P'] leading-relaxed"
+            class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-arcade-primary dark:text-arcade-darkText font-['Press_Start_2P'] leading-relaxed"
           >
             Arcade Zero
           </h1>
-          <p class="text-base sm:text-xl mb-4 sm:mb-6 text-[#BF3131]">
+          <p class="text-base sm:text-xl mb-4 sm:mb-6 text-arcade-secondary">
             Step into a world of pixelated nostalgia and steampunk-inspired
             gaming glory!
           </p>
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
               href="#consoles"
-              class="dark:bg-[#b91c1c] bg-[#7d0a0a] text-[#ead196] px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-[#BF3131] transition duration-300 font-['Press_Start_2P'] text-xs sm:text-sm text-center"
+              class="dark:bg-arcade-darkSecondary bg-arcade-primary text-arcade-cream px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-arcade-secondary transition duration-300 font-['Press_Start_2P'] text-xs sm:text-sm text-center"
               aria-label="Browse our collection of retro gaming consoles"
             >
               Explore Consoles
@@ -143,7 +200,7 @@
           </div>
         </div>
         <div
-          class="relative bg-[#BF3131] dark:bg-[#f87171] flex items-center justify-center p-4 sm:p-8"
+          class="relative bg-arcade-secondary dark:bg-arcade-darkAccent flex items-center justify-center p-4 sm:p-8"
         >
           <div class="absolute inset-0 opacity-10 bg-repeat"></div>
           <div
@@ -180,19 +237,19 @@
 
     <div
       id="modal-overlay"
-      class="fixed inset-0 hidden z-50 flex items-center justify-center bg-[#ccc]/75"
+      class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/75"
     >
       <!-- Close button positioned outside the modal -->
       <button
         id="modal-close"
-        class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-[#BF3131] text-[#EAD196] rounded-full font-bold text-xl shadow-lg hover:bg-[#7D0A0A] transition-colors duration-300 z-20"
+        class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-arcade-primary text-arcade-cream rounded-full font-bold text-xl shadow-lg hover:bg-arcade-secondary transition-colors duration-300 z-20"
       >
         &times;
       </button>
 
       <div
         id="modal-container"
-        class="relative bg-[#EEEEEE] dark:bg-[#1f2937] max-w-2xl w-full mx-4 rounded-xl border-4 border-[#BF3131] shadow-2xl transform transition-all h-[90svh] flex flex-col overflow-hidden shadow-[inset_0px_4px_6px_-1px_rgba(0,0,0,0.1),inset_-4px_0px_6px_-1px_rgba(0,0,0,0.1),inset_4px_0px_6px_-1px_rgba(0,0,0,0.1),inset_0px_-4px_6px_-1px_rgba(0,0,0,0.1)]"
+        class="relative bg-arcade-light dark:bg-arcade-dark max-w-2xl w-full mx-4 rounded-xl border-4 border-arcade-secondary shadow-2xl transform transition-all h-[90svh] flex flex-col overflow-hidden shadow-[inset_0px_4px_6px_-1px_rgba(0,0,0,0.1),inset_-4px_0px_6px_-1px_rgba(0,0,0,0.1),inset_4px_0px_6px_-1px_rgba(0,0,0,0.1),inset_0px_-4px_6px_-1px_rgba(0,0,0,0.1)]"
       >
         <div class="p-6 overflow-y-auto pb-20">
           <!-- Two-column layout for larger screens, stacked for mobile -->
@@ -201,13 +258,13 @@
             <div class="md:w-1/2">
               <div>
                 <h4
-                  class="font-['Press_Start_2P'] text-[#7D0A0A] dark:text-[#e5e7eb] text-base mb-2"
+                  class="font-['Press_Start_2P'] text-arcade-primary dark:text-arcade-darkText text-base mb-2"
                 >
                   Specs & History
                 </h4>
                 <div
                   id="modal-description"
-                  class="text-[#BF3131] dark:text-[#f87171] text-base mb-4"
+                  class="text-arcade-secondary dark:text-arcade-darkAccent text-base mb-4"
                 >
                   The world's first commercial home video game console. Instead
                   of using digital logic, it used analog circuitry and
@@ -218,13 +275,13 @@
               <!-- Notable Games -->
               <div class="mb-4">
                 <h4
-                  class="font-['Press_Start_2P'] dark:text-[#e5e7eb] text-[#7D0A0A] text-sm mb-2"
+                  class="font-['Press_Start_2P'] dark:text-arcade-darkText text-arcade-primary text-sm mb-2"
                 >
                   Notable Games
                 </h4>
                 <ul
                   id="modal-games"
-                  class="text-[#BF3131] dark:text-[#f87171] text-sm list-disc list-inside"
+                  class="text-arcade-secondary dark:text-arcade-darkAccent text-sm list-disc"
                 >
                   <li>Table Tennis</li>
                   <li>Ski</li>
@@ -236,13 +293,13 @@
               <!-- Fun Facts -->
               <div class="mb-4">
                 <h4
-                  class="font-['Press_Start_2P'] dark:text-[#e5e7eb] text-[#7D0A0A] text-sm mb-2"
+                  class="font-['Press_Start_2P'] dark:text-arcade-darkText text-arcade-primary text-sm mb-2"
                 >
                   Fun Facts
                 </h4>
                 <ul
                   id="modal-facts"
-                  class="text-[#BF3131] dark:text-[#f87171] text-sm list-disc list-inside"
+                  class="text-arcade-secondary dark:text-arcade-darkAccent text-sm list-disc"
                 >
                   <li>
                     Used plastic overlays on the TV screen to add color and
@@ -258,15 +315,15 @@
             <!-- Right column - Console Card -->
             <div class="md:w-1/2">
               <div
-                class="sticky top-0 w-full bg-[#FFBE00] dark:bg-[#f87171] rounded-lg overflow-hidden border-4 border-[#7D0A0A] shadow-lg"
+                class="sticky top-0 w-full bg-arcade-gold dark:bg-arcade-darkAccent rounded-lg overflow-hidden border-4 border-arcade-primary shadow-lg"
               >
                 <!-- Card Header -->
                 <div
-                  class="bg-[#BF3131] dark:bg-transparent py-2 px-4 border-b-4 border-[#7D0A0A]"
+                  class="bg-arcade-secondary dark:bg-transparent py-2 px-4 border-b-4 border-arcade-primary"
                 >
                   <h3
                     id="modal-name"
-                    class="font-['Press_Start_2P'] text-[#EAD196] dark:text-[#7d0a0a] text-center text-lg"
+                    class="font-['Press_Start_2P'] text-arcade-cream dark:text-arcade-primary text-center text-lg"
                   >
                     Magnavox Odyssey
                   </h3>
@@ -287,13 +344,17 @@
                 <!-- Card Stats -->
                 <div class="p-4">
                   <div class="grid grid-cols-2 gap-2 text-sm">
-                    <div class="font-bold text-[#7D0A0A]">Generation:</div>
+                    <div class="font-bold text-arcade-primary">Generation:</div>
                     <div id="modal-generation">Gen 1</div>
-                    <div class="font-bold text-[#7D0A0A]">Release Year:</div>
+                    <div class="font-bold text-arcade-primary">
+                      Release Year:
+                    </div>
                     <div id="modal-year">1972</div>
-                    <div class="font-bold text-[#7D0A0A]">Original Price:</div>
+                    <div class="font-bold text-arcade-primary">
+                      Original Price:
+                    </div>
                     <div id="modal-price">$100</div>
-                    <div class="font-bold text-[#7D0A0A]">Sales:</div>
+                    <div class="font-bold text-arcade-primary">Sales:</div>
                     <div id="modal-sales">350.00K</div>
                   </div>
                 </div>
@@ -304,17 +365,17 @@
 
         <!-- Navigation buttons - Fixed at bottom with shadow -->
         <div
-          class="bg-[#7D0A0A] py-3 px-4 flex justify-end w-full absolute bottom-0 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.2)] z-10"
+          class="bg-arcade-primary py-3 px-4 flex justify-end w-full absolute bottom-0 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.2)] z-10"
         >
           <button
             id="modal-prev"
-            class="bg-[#EAD196] text-[#7D0A0A] px-4 py-2 rounded-full mr-2 font-['Press_Start_2P'] text-xs hover:bg-[#BF3131] hover:text-[#EAD196] transition duration-300"
+            class="bg-arcade-cream text-arcade-primary px-4 py-2 rounded-full mr-2 font-['Press_Start_2P'] text-xs hover:bg-arcade-secondary hover:text-arcade-cream transition duration-300"
           >
             Prev
           </button>
           <button
             id="modal-next"
-            class="bg-[#EAD196] text-[#7D0A0A] px-4 py-2 rounded-full font-['Press_Start_2P'] text-xs hover:bg-[#BF3131] hover:text-[#EAD196] transition duration-300"
+            class="bg-arcade-cream text-arcade-primary px-4 py-2 rounded-full font-['Press_Start_2P'] text-xs hover:bg-arcade-secondary hover:text-arcade-cream transition duration-300"
           >
             Next
           </button>
