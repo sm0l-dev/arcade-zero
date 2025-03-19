@@ -40,99 +40,6 @@
         width: 24px;
         height: 24px;
       }
-
-      /* Theme Variables */
-      :root {
-        --bg-primary: #ead196;
-        --text-primary: #7d0a0a;
-        --text-secondary: #bf3131;
-        --card-bg: #eeeeee;
-        --border-color: #bf3131;
-        --modal-overlay: rgba(0, 0, 0, 0.5);
-      }
-
-      html.dark {
-        --bg-primary: #111827;
-        --text-primary: #e5e7eb;
-        --text-secondary: #f87171;
-        --card-bg: #1f2937;
-        --border-color: #f87171;
-        --modal-overlay: rgba(0, 0, 0, 0.75);
-      }
-
-      body {
-        background-color: var(--bg-primary);
-        color: var(--text-primary);
-      }
-
-      /* Theme CSS overrides */
-      .theme-card {
-        background-color: var(--card-bg);
-        border-color: var(--border-color);
-      }
-
-      .theme-text-primary {
-        color: var(--text-primary);
-      }
-
-      .theme-text-secondary {
-        color: var(--text-secondary);
-      }
-
-      .theme-border {
-        border-color: var(--border-color);
-      }
-
-      #modal-overlay {
-        background-color: var(--modal-overlay);
-      }
-
-      /* Dark theme card styles */
-      html.dark .bg-\[\#EEEEEE\] {
-        background-color: var(--card-bg);
-      }
-
-      html.dark .text-\[\#7D0A0A\] {
-        color: var(--text-primary);
-      }
-
-      html.dark .text-\[\#BF3131\] {
-        color: var(--text-secondary);
-      }
-
-      html.dark .border-\[\#BF3131\] {
-        border-color: var(--border-color);
-      }
-
-      html.dark .bg-\[\#BF3131\] {
-        background-color: #f87171;
-      }
-
-      html.dark .bg-\[\#7D0A0A\] {
-        background-color: #b91c1c;
-      }
-
-      html.dark .from-\[\#FFD700\] {
-        --tw-gradient-from: #b45309;
-      }
-
-      html.dark .to-\[\#FFA500\] {
-        --tw-gradient-to: #92400e;
-      }
-
-      /* Transition for smooth theme switching */
-      body,
-      .bg-\[\#EEEEEE\],
-      .text-\[\#7D0A0A\],
-      .text-\[\#BF3131\],
-      .border-\[\#BF3131\],
-      .bg-\[\#BF3131\],
-      .bg-\[\#7D0A0A\],
-      .from-\[\#FFD700\],
-      .to-\[\#FFA500\] {
-        transition: background-color 0.3s ease, color 0.3s ease,
-          border-color 0.3s ease;
-      }
     </style>
     <script>
       // Configure tailwind
@@ -200,11 +107,11 @@
       });
     </script>
   </head>
-  <body class="mb-24">
+  <body class="mb-24 dark:bg-[#1f2937] bg-[#ead196]">
     <!-- Theme Toggle Button -->
     <button
       id="theme-toggle"
-      class="theme-toggle"
+      class="theme-toggle z-10"
       aria-label="Toggle dark mode"
     >
       <!-- Icon will be set by JavaScript -->
@@ -213,22 +120,22 @@
     <!-- Hero Section -->
     <section class="min-h-[60vh] flex items-center justify-center p-4 sm:p-6">
       <div
-        class="max-w-4xl w-full theme-card bg-[#EEEEEE] rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2 border-4 sm:border-8 border-[#BF3131]"
+        class="max-w-4xl w-full theme-card bg-[#EEEEEE] dark:bg-[#1f2937] rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-2 border-4 sm:border-8 border-[#BF3131] dark:border-[#f87171]"
       >
         <div class="p-4 sm:p-8 flex flex-col justify-center gap-6">
           <h1
-            class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-[#7D0A0A] font-['Press_Start_2P'] leading-relaxed"
+            class="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-[#7D0A0A] dark:text-[#e5e7eb] font-['Press_Start_2P'] leading-relaxed"
           >
             Arcade Zero
           </h1>
-          <!-- <p class="text-base sm:text-xl mb-4 sm:mb-6 text-[#BF3131]">
+          <p class="text-base sm:text-xl mb-4 sm:mb-6 text-[#BF3131]">
             Step into a world of pixelated nostalgia and steampunk-inspired
             gaming glory!
-          </p> -->
+          </p>
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
               href="#consoles"
-              class="bg-[#7D0A0A] text-[#EAD196] px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-[#BF3131] transition duration-300 font-['Press_Start_2P'] text-xs sm:text-sm text-center"
+              class="dark:bg-[#b91c1c] bg-[#7d0a0a] text-[#ead196] px-4 sm:px-6 py-2 sm:py-3 rounded-full hover:bg-[#BF3131] transition duration-300 font-['Press_Start_2P'] text-xs sm:text-sm text-center"
               aria-label="Browse our collection of retro gaming consoles"
             >
               Explore Consoles
@@ -236,14 +143,14 @@
           </div>
         </div>
         <div
-          class="relative bg-[#BF3131] flex items-center justify-center p-4 sm:p-8"
+          class="relative bg-[#BF3131] dark:bg-[#f87171] flex items-center justify-center p-4 sm:p-8"
         >
           <div class="absolute inset-0 opacity-10 bg-repeat"></div>
           <div
             id="consoles"
             class="absolute inset-0 opacity-10 bg-repeat"
           ></div>
-          <div class="relative z-10 transform rotate-12 shadow-2xl max-w-full">
+          <div class="relative z-10 transform rotate-12 max-w-full py-16 px-8">
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Nes_controller.svg/612px-Nes_controller.svg.png"
               alt="NES Controller"
@@ -255,10 +162,12 @@
     </section>
 
     <!-- Console Grid Container -->
-    <div
-      id="console-container"
-      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-4xl w-full mx-auto"
-    ></div>
+    <section class="p-4 sm:p-6">
+      <div
+        id="console-container"
+        class="max-w-4xl grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-4xl w-full mx-auto"
+      ></div>
+    </section>
 
     <footer class="py-8">
       <div class="max-w-6xl mt-10 mx-auto text-center">
@@ -269,123 +178,134 @@
       </div>
     </footer>
 
-    <!-- Modal Overlay -->
     <div
       id="modal-overlay"
-      class="fixed inset-0 hidden z-50 flex items-center justify-center"
+      class="fixed inset-0 hidden z-50 flex items-center justify-center bg-[#ccc]/75"
     >
+      <!-- Close button positioned outside the modal -->
+      <button
+        id="modal-close"
+        class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-[#BF3131] text-[#EAD196] rounded-full font-bold text-xl shadow-lg hover:bg-[#7D0A0A] transition-colors duration-300 z-20"
+      >
+        &times;
+      </button>
+
       <div
         id="modal-container"
-        class="bg-[#EEEEEE] max-w-2xl w-full mx-4 rounded-xl border-4 border-[#BF3131] shadow-2xl transform transition-all"
+        class="relative bg-[#EEEEEE] dark:bg-[#1f2937] max-w-2xl w-full mx-4 rounded-xl border-4 border-[#BF3131] shadow-2xl transform transition-all h-[90svh] flex flex-col overflow-hidden shadow-[inset_0px_4px_6px_-1px_rgba(0,0,0,0.1),inset_-4px_0px_6px_-1px_rgba(0,0,0,0.1),inset_4px_0px_6px_-1px_rgba(0,0,0,0.1),inset_0px_-4px_6px_-1px_rgba(0,0,0,0.1)]"
       >
-        <div
-          class="flex justify-between items-center p-4 border-b-2 border-[#BF3131]"
-        >
-          <h2
-            id="modal-title"
-            class="font-['Press_Start_2P'] text-lg text-[#7D0A0A]"
-          >
-            Console Details
-          </h2>
-          <button
-            id="modal-close"
-            class="text-[#7D0A0A] hover:text-[#BF3131] font-bold text-2xl"
-          >
-            &times;
-          </button>
-        </div>
-        <div class="p-6">
-          <div class="grid md:grid-cols-2 gap-6">
-            <!-- Console Image -->
-            <div
-              class="bg-[#BF3131] bg-opacity-10 rounded-lg p-4 flex items-center justify-center"
-            >
-              <img
-                id="modal-image"
-                src=""
-                alt="Console"
-                class="max-h-64 object-contain"
-              />
-            </div>
-
-            <!-- Console Card (Pokémon style) -->
-            <div
-              class="bg-gradient-to-br from-[#FFD700] to-[#FFA500] rounded-lg overflow-hidden border-4 border-[#7D0A0A] shadow-lg"
-            >
-              <!-- Card Header -->
-              <div class="bg-[#BF3131] py-2 px-4 border-b-4 border-[#7D0A0A]">
-                <h3
-                  id="modal-name"
-                  class="font-['Press_Start_2P'] text-[#EAD196] text-center text-lg"
-                >
-                  Console Name
-                </h3>
-              </div>
-              <!-- Card Image -->
-              <div class="h-48 overflow-hidden relative">
-                <div
-                  class="absolute inset-0 bg-white bg-opacity-20 flex items-center justify-center"
-                >
-                  <img
-                    id="modal-card-image"
-                    src=""
-                    alt="Console"
-                    class="max-h-full max-w-full object-contain"
-                  />
-                </div>
-              </div>
-              <!-- Card Stats -->
-              <div class="bg-[#EAD196] p-4">
-                <div class="grid grid-cols-2 gap-2 text-sm">
-                  <div class="font-bold text-[#7D0A0A]">Generation:</div>
-                  <div id="modal-generation">Gen 1</div>
-                  <div class="font-bold text-[#7D0A0A]">Release Year:</div>
-                  <div id="modal-year">1985</div>
-                  <div class="font-bold text-[#7D0A0A]">Original Price:</div>
-                  <div id="modal-price">$199</div>
-                  <div class="font-bold text-[#7D0A0A]">Sales:</div>
-                  <div id="modal-sales">61.91M</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Console Details -->
-          <div class="mt-6">
-            <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-sm mb-2">
-              Specs & History
-            </h4>
-            <div id="modal-description" class="text-[#BF3131] text-sm">
-              Console description goes here.
-            </div>
-
-            <div class="mt-4 grid grid-cols-2 gap-4">
+        <div class="p-6 overflow-y-auto pb-20">
+          <!-- Two-column layout for larger screens, stacked for mobile -->
+          <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left column - Info -->
+            <div class="md:w-1/2">
               <div>
-                <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-xs mb-2">
+                <h4
+                  class="font-['Press_Start_2P'] text-[#7D0A0A] dark:text-[#e5e7eb] text-base mb-2"
+                >
+                  Specs & History
+                </h4>
+                <div
+                  id="modal-description"
+                  class="text-[#BF3131] dark:text-[#f87171] text-base mb-4"
+                >
+                  The world's first commercial home video game console. Instead
+                  of using digital logic, it used analog circuitry and
+                  television screen overlays to simulate various games.
+                </div>
+              </div>
+
+              <!-- Notable Games -->
+              <div class="mb-4">
+                <h4
+                  class="font-['Press_Start_2P'] dark:text-[#e5e7eb] text-[#7D0A0A] text-sm mb-2"
+                >
                   Notable Games
                 </h4>
                 <ul
                   id="modal-games"
-                  class="text-[#BF3131] text-xs list-disc list-inside"
+                  class="text-[#BF3131] dark:text-[#f87171] text-sm list-disc list-inside"
                 >
-                  <!-- Games will be inserted here -->
+                  <li>Table Tennis</li>
+                  <li>Ski</li>
+                  <li>Simon Says</li>
+                  <li>Football</li>
                 </ul>
               </div>
-              <div>
-                <h4 class="font-['Press_Start_2P'] text-[#7D0A0A] text-xs mb-2">
+
+              <!-- Fun Facts -->
+              <div class="mb-4">
+                <h4
+                  class="font-['Press_Start_2P'] dark:text-[#e5e7eb] text-[#7D0A0A] text-sm mb-2"
+                >
                   Fun Facts
                 </h4>
                 <ul
                   id="modal-facts"
-                  class="text-[#BF3131] text-xs list-disc list-inside"
+                  class="text-[#BF3131] dark:text-[#f87171] text-sm list-disc list-inside"
                 >
-                  <!-- Facts will be inserted here -->
+                  <li>
+                    Used plastic overlays on the TV screen to add color and
+                    graphics
+                  </li>
+                  <li>Designed by Ralph Baer, 'The Father of Video Games'</li>
+                  <li>Had no sound capability</li>
+                  <li>Powered by batteries</li>
                 </ul>
+              </div>
+            </div>
+
+            <!-- Right column - Console Card -->
+            <div class="md:w-1/2">
+              <div
+                class="sticky top-0 w-full bg-[#FFBE00] dark:bg-[#f87171] rounded-lg overflow-hidden border-4 border-[#7D0A0A] shadow-lg"
+              >
+                <!-- Card Header -->
+                <div
+                  class="bg-[#BF3131] dark:bg-transparent py-2 px-4 border-b-4 border-[#7D0A0A]"
+                >
+                  <h3
+                    id="modal-name"
+                    class="font-['Press_Start_2P'] text-[#EAD196] dark:text-[#7d0a0a] text-center text-lg"
+                  >
+                    Magnavox Odyssey
+                  </h3>
+                </div>
+                <!-- Card Image -->
+                <div class="h-48 overflow-hidden relative">
+                  <div
+                    class="absolute inset-0 bg-white bg-opacity-20 flex items-center justify-center"
+                  >
+                    <img
+                      id="modal-card-image"
+                      src=""
+                      alt="Console"
+                      class="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                </div>
+                <!-- Card Stats -->
+                <div class="p-4">
+                  <div class="grid grid-cols-2 gap-2 text-sm">
+                    <div class="font-bold text-[#7D0A0A]">Generation:</div>
+                    <div id="modal-generation">Gen 1</div>
+                    <div class="font-bold text-[#7D0A0A]">Release Year:</div>
+                    <div id="modal-year">1972</div>
+                    <div class="font-bold text-[#7D0A0A]">Original Price:</div>
+                    <div id="modal-price">$100</div>
+                    <div class="font-bold text-[#7D0A0A]">Sales:</div>
+                    <div id="modal-sales">350.00K</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="bg-[#7D0A0A] py-3 px-4 flex justify-end">
+
+        <!-- Navigation buttons - Fixed at bottom with shadow -->
+        <div
+          class="bg-[#7D0A0A] py-3 px-4 flex justify-end w-full absolute bottom-0 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.2)] z-10"
+        >
           <button
             id="modal-prev"
             class="bg-[#EAD196] text-[#7D0A0A] px-4 py-2 rounded-full mr-2 font-['Press_Start_2P'] text-xs hover:bg-[#BF3131] hover:text-[#EAD196] transition duration-300"
