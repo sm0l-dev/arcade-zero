@@ -1,10 +1,10 @@
-# 🕹️ Retro Zero - The Museum of Digital Nostalgia
+# 🕹️ Arcade Zero - The Museum of Digital Nostalgia
 
 [![Retro Zero Banner](https://arcade.sm0l.dev/assets/images/arcade-zero-dark.jpg)](http://arcade.sm0l.dev/)
 
 ## 💾 What the @#$% is this?
 
-Welcome to **Retro Zero** - where we've resurrected gaming history with more love than your mom showed that Tamagotchi you starved to death in 1997.
+Welcome to **Arcade Zero** - where we've resurrected gaming history with more love than your mom showed that Tamagotchi you starved to death in 1997.
 
 This interactive museum showcases the evolution of gaming consoles from the primordial soup of the 1970s Magnavox Odyssey (aka "Wait, that's a game console?") to the sexy curves of the Sega CD. Each console comes lovingly documented with tech specs, notable games, and fun facts!
 
