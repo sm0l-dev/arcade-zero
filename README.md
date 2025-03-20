@@ -1,6 +1,6 @@
 # 🕹️ Retro Zero - The Museum of Digital Nostalgia
 
-![Retro Zero Banner](https://arcade.sm0l.dev/assets/images/arcade-zero-dark.jpg)
+[![Retro Zero Banner](https://arcade.sm0l.dev/assets/images/arcade-zero-dark.jpg)](http://arcade.sm0l.dev/)
 
 ## 💾 What the @#$% is this?
 
