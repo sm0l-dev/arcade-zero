@@ -1,6 +1,6 @@
 # 🕹️ Retro Zero - The Museum of Digital Nostalgia
 
-![Retro Zero Banner](https://placehold.co/1200x300/BF3131/EAD196?text=Retro+Zero+-+Nostalgia+Unleashed)
+![Retro Zero Banner]([https://placehold.co/1200x300/BF3131/EAD196?text=Retro+Zero+-+Nostalgia+Unleashed](https://arcade.sm0l.dev/assets/images/arcade-zero-dark.jpg))
 
 ## 💾 What the @#$% is this?
 
